@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*- 
 """
 Django settings for django_blog project.
 
@@ -15,7 +16,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
+print(BASE_DIR)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
 
@@ -23,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '7i!^i2v16^nrab9o6ivvnl^x4h=!zy6fkb)zqm=h5c&p9-qexj'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['101.236.6.252', '127.0.0.1', 'myblog.guoweikuang.com']
 
 
 # Application definition
@@ -40,6 +41,7 @@ INSTALLED_APPS = [
     'blog',
     'markdown2',
     'pygments',
+    'suit',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -80,7 +82,8 @@ WSGI_APPLICATION = 'django_blog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        #'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': '/home/guoweikuang/django_web/db.sqlite3',
     }
 }
 
@@ -107,17 +110,26 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-Hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
+DATETIME_FORMAT = 'Y-m-d H:i:s'
 
+SUIT_CONFIG = {  # suit页面配置
+    'ADMIN_NAME': '郭伟匡的博客管理后台',  #登录界面提示
+    'LIST_PER_PAGE': 20,
+    'MENU': ({'label': u'用户管理', 'app': 'blog', 'models': ('blog', 'auth.Group', 'web_sso.User_ex')},  #每一个字典表示左侧菜单的一栏
+             # {'label': u'SQL管理', 'app': 'web_sso', 'models': ('web_sso.Sql', 'web_sso.PreSql', 'web_sso.Direction')},  # 可以是多个字典
+             ),
+    # label表示name，app表示上边的install的app，models表示用了哪些models
+}
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 

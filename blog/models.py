@@ -80,7 +80,9 @@ class Article(models.Model):
     def get_absolute_url(self):
         return reverse('blog:detail', kwargs={'article_id': self.pk})
 
-
+    def increase_views(self):
+        self.views += 1
+        self.save(update_fields=['views'])
 class Tag(models.Model):
     """
     tag(标签）对应的数据库model

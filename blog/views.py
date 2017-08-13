@@ -64,6 +64,7 @@ class ArticleDetailView(DetailView):
         :return:
         """
         obj = super(ArticleDetailView, self).get_object()
+        obj.increase_views()
         obj.body = markdown2.markdown(obj.body, extras=['fenced-code-blocks'],)
         return obj
 

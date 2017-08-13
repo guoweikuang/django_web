@@ -29,6 +29,9 @@
                         <div class="date-read">
                             <i class="icon-date"></i><span
                                 class="date">{{ article.last_modified_time|date:"Y年n月d日" }}</span>
+				<div class="entry-meta">
+				<span class="views-count"><a href="{{ article.get_absolute_url }}">{{ article.views }} 阅读</a></span>
+				</div>
                         </div>
                         <div class="post-bd">
                             {{ article.body |safe }}
